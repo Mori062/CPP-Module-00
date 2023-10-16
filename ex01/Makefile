@@ -1,24 +1,20 @@
 NAME = phonebook
-SRC = PhoneBook.cpp Contact.cpp main.cpp
-OBJDIR = obj
-OBJS = $(addprefix $(OBJDIR)/, $(SRC:%.cpp=%.o))
+SRC = main.cpp
+OBJS = $(SRC:%.cpp=%.o)
+RM = rm -f
 CXX = c++
-RM = rm -rf
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-all : $(OBJDIR) $(NAME)
+all : $(NAME)
 
 $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-$(OBJDIR):
-	mkdir -p $(OBJDIR)
-
-$(OBJDIR)/%.o: %.cpp
+%.o: %.cpp
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
 
 clean :
-	$(RM) $(OBJDIR)
+	$(RM) $(OBJS)
 
 fclean : clean
 	$(RM) $(NAME)
