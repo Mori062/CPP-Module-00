@@ -8,17 +8,17 @@ int main(void)
     std::cout << "Type a command [ADD (add) | SEARCH (search) | EXIT (exit)] " << std::endl;
     while (1)
     {
-        std:: cout << "> ";
+        std:: cout << "$> ";
         if (!std::getline(std::cin, command))
 		{
 			std::cerr << "EOF received !" << std::endl;
 			break ;
 		}
-		if (command == "ADD")
+		if (command == "ADD" || command == "add")
 			std::cout << "ADD" << std::endl;
-		else if (command == "SEARCH")
+		else if (command == "SEARCH" || command == "search")
 			std::cout << "SEARCH" << std::endl;
-		else if (command == "EXIT")
+		else if (command == "EXIT" || command == "exit")
         {
             std::cerr << "EXIT Succeed !" << std::endl;
 			break ;
@@ -27,7 +27,7 @@ int main(void)
 			continue ;
         else
         {
-            std::cerr << "No such command !" << std::endl;
+            std::cerr << "No such [" << command <<"] command !" << std::endl;
             continue ;
         }
     }
