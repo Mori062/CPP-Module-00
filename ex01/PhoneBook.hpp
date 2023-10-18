@@ -6,8 +6,8 @@
 
 class PhoneBook
 {
-	private:
 	public:
+		void	add_content(int i);
 };
 
 #endif
