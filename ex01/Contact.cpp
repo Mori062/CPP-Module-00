@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <typeinfo>
+#include <stdexcept>
 
 void       Contact::print_element(void)
 {
@@ -25,11 +26,23 @@ void       Contact::print_element(void)
 	}
 	while (1)
 	{
-		while (!std::getline(std::cin, number))
+		while (1)
+		{
+			std::getline(std::cin, number);
+			try
+			{
+				std::stoi(number);
+			}
+			catch (const std::invalid_argument& e)
+			{
+				std::cerr << "\033[31mInvalid number !\033[0m" << std::endl;
+			}	
+		}
+		int want_index = std::stoi(number);
+		if (want_index < 1 || 8 < want_index)
+			std::cerr << "\033[31mInvalid number !\033[0m" << std::endl;
+		else
 			break ;
-		while ()
-		while (1 > std::stoi(number) || std::stoi(number) < 8)
-			break ;
-		return ;
 	}
+	std::cout << "\033[32mWOW\033[0m" << std::endl;
 }

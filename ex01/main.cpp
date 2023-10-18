@@ -26,7 +26,6 @@ int main(void)
 		else if (command == "SEARCH")
         {
             contact.print_element();
-			// std::cout << "SEARCH" << std::endl;
         }
 		else if (command == "EXIT")
         {
