@@ -39,7 +39,6 @@ void    PhoneBook::search_contents(void)
     {
         if (num == std::to_string(i + 1))
         {
-            std::cout << "SUCCESS" << std::endl;
             contacts[i].print_info();
             return ;
         }
@@ -65,10 +64,7 @@ void    PhoneBook::start(void)
             contacts[i++ % book_num].add_content();
         }
 		else if (command == "SEARCH")
-        {
-            std::cerr << "SEARCH" << std::endl;
             search_contents();
-        }
 		else if (command == "EXIT")
         {
             std::cerr << "\033[31mEXIT Succeed ! Bye !\033[0m" << std::endl;

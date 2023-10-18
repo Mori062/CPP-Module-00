@@ -37,6 +37,6 @@ void	Contact::print_info(void)
 {
 	for (int i = 0; i < 5; i++)
 	{
-		std::cout << index[i] << ":" << contents[i] << std::endl;
+		std::cout << std::left << std::setw(15) << index[i] << ":	" << contents[i] << std::endl;
 	}
 }
