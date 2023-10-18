@@ -1,46 +1,77 @@
 #include "PhoneBook.hpp"
-#include "Contact.hpp"
+#include "Contact.hpp"  
 
-void    PhoneBook::add_content(int i)
+void      PhoneBook::show_info(void)
 {
-    std::string name;
-    Contact     contact;
+    int i = 0;
 
-    std::cout << "Save a new contact" << std::endl;
+	std::cout << "|";
+	std::cout << std::setw(10) << "index" << "|";
+	std::cout << std::setw(10) << "first name" << "|";
+	std::cout << std::setw(10) << "last name" << "|";
+	std::cout << std::setw(10) << "nickname" << "|" << std::endl;
+	while (i < 8)
+	{
+		std::cout << "|";
+		std::cout << std::setw(10) << i + 1 << "|";
+        std::cout << std::setw(10) << contacts[i].get_contents("first name") << "|";
+        std::cout << std::setw(10) << contacts[i].get_contents("last name") << "|";
+        std::cout << std::setw(10) << contacts[i].get_contents("nickname") << "|" << std::endl;
+		i++;
+	}
+}
+
+void    PhoneBook::search_contents(void)
+{
+    show_info();
+    std::string num;
+
+    std::getline(std::cin, num);
+    for (int i = 0; i < book_num; i++)
+    {
+        if (num == std::to_string(i + 1))
+        {
+            std::cout << "SUCCESS" << std::endl;
+            contacts[i].print_info();
+            return ;
+        }
+    }
+}
+
+void    PhoneBook::start(void)
+{
+    int i = 0;
+
+    std::cout << "\033[32mType a command [ADD (add) | SEARCH (search) | EXIT (exit)] \033[0m" << std::endl;
     while (1)
     {
-        std::cout << "Enter a first name :";
-        if (std::getline(std::cin, name))
-            break ;     
+        std:: cout << "$> ";
+        if (!std::getline(std::cin, command))
+		{
+			std::cerr << "\033[31mEOF received ! Bye !\033[0m" << std::endl;
+			break ;
+		}
+		if (command == "ADD")
+        {
+            std::cerr << "ADD" << std::endl;
+            contacts[i++ % book_num].add_content();
+        }
+		else if (command == "SEARCH")
+        {
+            std::cerr << "SEARCH" << std::endl;
+            search_contents();
+        }
+		else if (command == "EXIT")
+        {
+            std::cerr << "\033[31mEXIT Succeed ! Bye !\033[0m" << std::endl;
+			break ;
+        }
+		else if (command.empty())
+			continue ;
+        else
+        {
+            std::cerr << "\033[31mNo such \033[0m[" << command <<"]\033[31m command !\033[0m" << std::endl;
+            continue ;
+        }
     }
-    contact.first_name[i] = name;
-    while (1)
-    {
-        std::cout << "Enter "<< name <<"'s last name :";
-        if (std::getline(std::cin, name))
-            break ;  
-    }
-    contact.last_name[i] = name;
-    while (1)
-    {
-        std::cout << "Enter "<< name <<"'s nickname :";
-        if (std::getline(std::cin, name))
-            break ;  
-    }
-    contact.nickname[i] = name;
-    while (1)
-    {
-        std::cout << "Enter "<< name <<"'s phone number :";
-        if (std::getline(std::cin, name))
-            break ;  
-    }
-    contact.phone_number[i] = name;
-    while (1)
-    {
-        std::cout << "Enter "<< name <<"'s darkest secret :";
-        if (std::getline(std::cin, name))
-            break ;  
-    }
-    contact.darkest_secret[i] = name;
-    std::cout << "Added " << contact.first_name[i] << "'s data !" <<std::endl;
 }

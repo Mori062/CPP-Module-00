@@ -3,11 +3,21 @@
 
 # include <string>
 # include <iostream>
+#include "Contact.hpp"
 
 class PhoneBook
 {
+	private:
+		static const int	book_num = 8;
+		Contact				contacts[book_num];
+		std::string			command;
+
+	private:
+		void				search_contents();
+		void				show_info();
+
 	public:
-		void	add_content(int i);
+		void				start();
 };
 
 #endif

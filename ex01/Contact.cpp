@@ -1,48 +1,42 @@
 #include "Contact.hpp"
-#include <cstdlib>
-#include <iostream>
-#include <string>
-#include <typeinfo>
-#include <stdexcept>
 
-void       Contact::print_element(void)
+Contact::Contact()
 {
-    int          i = 0;
-    std::string  number;
+	index[0] = "first name";
+	index[1] = "last name";
+	index[2] = "nickname";
+	index[3] = "phone number";
+	index[4] = "darkest secret";
+}
 
-	std::cout << "|";
-	std::cout << std::setw(10) << "index" << "|";
-	std::cout << std::setw(10) << "first name" << "|";
-	std::cout << std::setw(10) << "last name" << "|";
-	std::cout << std::setw(10) << "nickname" << "|" << std::endl;
-	while (i < 8)
+void	Contact::add_content(void)
+{
+	int			i = 0;
+	std::string element;
+
+	while (i < 5)
 	{
-		std::cout << "|";
-		std::cout << std::setw(10) << i + 1 << "|";
-        std::cout << std::setw(10) << this->first_name[i] << "|";
-        std::cout << std::setw(10) << this->last_name[i] << "|";
-        std::cout << std::setw(10) << this->nickname[i] << "|" << std::endl;
+		std::cout << index[i] << std::endl;
+		std::getline(std::cin, element);
+		contents[i] = element;
 		i++;
 	}
-	while (1)
+}
+
+std::string	Contact::get_contents(std::string target)
+{
+	for (int i = 0; i < 5 ; i++)
 	{
-		while (1)
-		{
-			std::getline(std::cin, number);
-			try
-			{
-				std::stoi(number);
-			}
-			catch (const std::invalid_argument& e)
-			{
-				std::cerr << "\033[31mInvalid number !\033[0m" << std::endl;
-			}	
-		}
-		int want_index = std::stoi(number);
-		if (want_index < 1 || 8 < want_index)
-			std::cerr << "\033[31mInvalid number !\033[0m" << std::endl;
-		else
-			break ;
+		if (index[i] == target)
+			return (contents[i]);
 	}
-	std::cout << "\033[32mWOW\033[0m" << std::endl;
+	return (NULL);
+}
+
+void	Contact::print_info(void)
+{
+	for (int i = 0; i < 5; i++)
+	{
+		std::cout << index[i] << ":" << contents[i] << std::endl;
+	}
 }
