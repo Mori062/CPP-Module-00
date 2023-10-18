@@ -15,6 +15,7 @@ class PhoneBook
 	private:
 		void				search_contents();
 		void				show_info();
+		std::string			cut_contents(std::string original);
 
 	public:
 		void				start();

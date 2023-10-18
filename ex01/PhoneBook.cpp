@@ -1,6 +1,14 @@
 #include "PhoneBook.hpp"
 #include "Contact.hpp"  
 
+std::string PhoneBook::cut_contents(std::string original)
+{
+    if (original.size() > 10)
+        return (original.substr(0, 9) + ".");
+    else
+        return(original);
+}
+
 void      PhoneBook::show_info(void)
 {
     int i = 0;
@@ -14,9 +22,9 @@ void      PhoneBook::show_info(void)
 	{
 		std::cout << "|";
 		std::cout << std::setw(10) << i + 1 << "|";
-        std::cout << std::setw(10) << contacts[i].get_contents("first name") << "|";
-        std::cout << std::setw(10) << contacts[i].get_contents("last name") << "|";
-        std::cout << std::setw(10) << contacts[i].get_contents("nickname") << "|" << std::endl;
+        std::cout << std::setw(10) << cut_contents(contacts[i].get_contents("first name")) << "|";
+        std::cout << std::setw(10) << cut_contents(contacts[i].get_contents("last name")) << "|";
+        std::cout << std::setw(10) << cut_contents(contacts[i].get_contents("nickname")) << "|" << std::endl;
 		i++;
 	}
 }
