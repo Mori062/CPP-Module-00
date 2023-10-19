@@ -16,7 +16,7 @@ void	Contact::add_content(void)
 
 	while (i < 5)
 	{
-		std::cout << index[i] << std::endl;
+		std::cout << index[i] << ": ";
 		std::getline(std::cin, element);
 		contents[i] = element;
 		i++;

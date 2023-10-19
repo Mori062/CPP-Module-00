@@ -31,9 +31,10 @@ void      PhoneBook::show_info(void)
 
 void    PhoneBook::search_contents(void)
 {
-    show_info();
     std::string num;
 
+    show_info();
+    std::cout << "Type a index number to see the contact's information: ";
     std::getline(std::cin, num);
     for (int i = 0; i < book_num; i++)
     {
@@ -43,6 +44,7 @@ void    PhoneBook::search_contents(void)
             return ;
         }
     }
+    std::cerr << "\033[31mNo such index number !\033[0m" << std::endl;
 }
 
 void    PhoneBook::start(void)
@@ -52,7 +54,7 @@ void    PhoneBook::start(void)
     std::cout << "\033[32mType a command [ADD (add) | SEARCH (search) | EXIT (exit)] \033[0m" << std::endl;
     while (1)
     {
-        std:: cout << "$> ";
+        std::cout << "$> ";
         if (!std::getline(std::cin, command))
 		{
 			std::cerr << "\033[31mEOF received ! Bye !\033[0m" << std::endl;
@@ -60,7 +62,7 @@ void    PhoneBook::start(void)
 		}
 		if (command == "ADD")
         {
-            std::cerr << "ADD" << std::endl;
+            std::cout << "\033[32m Let's ADD contact address to the phonebook !\033[0m" << std::endl;
             contacts[i++ % book_num].add_content();
         }
 		else if (command == "SEARCH")
