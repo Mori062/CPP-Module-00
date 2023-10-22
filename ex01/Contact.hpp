@@ -8,8 +8,9 @@
 class Contact
 {
 	private:
-		std::string	index[5];
-		std::string	contents[5];
+		static const int	max_content = 5;
+		std::string	index[max_content];
+		std::string	contents[max_content];
 
 	public:
 		Contact();
